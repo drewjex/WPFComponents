@@ -1,0 +1,384 @@
+<Grid  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:local1="clr-namespace:SkyWest.Common.WPF"
+       x:Class="SkyWest.Common.WPF.ColorSlider"
+       d:DesignHeight="40" d:DesignWidth="300"
+       Loaded="ColorSlider_Loaded"
+       SizeChanged="ColorSlider_SizeChanged"
+       mc:Ignorable="d" >
+    <Grid.Resources>
+        <Style x:Key="SliderRepeatButton1"
+               TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Setter Property="IsTabStop"
+                    Value="false" />
+            <Setter Property="Focusable"
+                    Value="false" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border  SnapsToDevicePixels="True"
+                                 BorderThickness="1"
+                                 BorderBrush="Green"
+                                 Background="Green"
+                                 Height="4" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SliderRepeatButton2"
+               TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border SnapsToDevicePixels="True"
+                                Background="LightGreen"
+                                BorderThickness="1"
+                                BorderBrush="LightGreen"
+                                Height="4" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SliderRepeatButton3"
+               TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border SnapsToDevicePixels="True"
+                                Background="Orange"
+                                BorderThickness="1"
+                                BorderBrush="Orange"
+                                Height="4" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SliderRepeatButton4"
+               TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border SnapsToDevicePixels="True"
+                                Background="Red"
+                                BorderThickness="1"
+                                BorderBrush="Red"
+                                Height="4" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SliderThumb1"
+               TargetType="{x:Type Thumb}">
+            <Setter Property="Focusable"
+                    Value="false" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Setter Property="Height"
+                    Value="10" />
+            <Setter Property="Width"
+                    Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Canvas>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="10" />
+                                </Grid.RowDefinitions>
+                                <Ellipse x:Name="Background"
+                                         Fill="SteelBlue"
+                                         Height="10"
+                                         Width="10"
+                                         Stroke="Gray" />
+                                <TextBlock Grid.Row="1"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="Black"
+                                           FontSize="9"
+                                           Text="{Binding LowerValue, RelativeSource={RelativeSource AncestorType={x:Type local1:ColorSlider}}}" />
+                            </Grid>
+                        </Canvas>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="true">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="#FFF" />
+                            </Trigger>
+                            <Trigger Property="IsDragging"
+                                     Value="true">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="#FFF" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="false">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="Gray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SliderThumb2"
+               TargetType="{x:Type Thumb}">
+            <Setter Property="Focusable"
+                    Value="false" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Setter Property="Height"
+                    Value="10" />
+            <Setter Property="Width"
+                    Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Canvas>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="10" />
+                                </Grid.RowDefinitions>
+                                <Ellipse x:Name="Background"
+                                         Fill="SteelBlue"
+                                         Height="10"
+                                         Width="10"
+                                         Stroke="Gray" />
+                                <TextBlock Grid.Row="1"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="Black"
+                                           FontSize="9"
+                                           Text="{Binding MidValue, RelativeSource={RelativeSource AncestorType={x:Type local1:ColorSlider}}}" />
+                            </Grid>
+                        </Canvas>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="true">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="#FFF" />
+                            </Trigger>
+                            <Trigger Property="IsDragging"
+                                     Value="true">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="#FFF" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="false">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="Gray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SliderThumb3"
+               TargetType="{x:Type Thumb}">
+            <Setter Property="Focusable"
+                    Value="false" />
+            <Setter Property="OverridesDefaultStyle"
+                    Value="true" />
+            <Setter Property="Height"
+                    Value="10" />
+            <Setter Property="Width"
+                    Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Canvas>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="10" />
+                                </Grid.RowDefinitions>
+                                <Ellipse x:Name="Background"
+                                         Fill="SteelBlue"
+                                         Height="10"
+                                         Width="10"
+                                         Stroke="Gray" />
+                                <TextBlock Grid.Row="1"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="Black"
+                                           FontSize="9"
+                                           Text="{Binding UpperValue, RelativeSource={RelativeSource AncestorType={x:Type local1:ColorSlider}}}" />
+                            </Grid>
+                        </Canvas>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="true">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="#FFF" />
+                            </Trigger>
+                            <Trigger Property="IsDragging"
+                                     Value="true">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="#FFF" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="false">
+                                <Setter Property="Fill"
+                                        TargetName="Background"
+                                        Value="Gray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="Slider1"
+                         TargetType="{x:Type Slider}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"
+                                   MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Track Grid.Row="1"
+                       x:Name="PART_Track"
+                       Minimum="0"
+                       Maximum="5">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton1}"
+                                      Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb1}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton2}"
+                                      Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="Slider2"
+                         TargetType="{x:Type Slider}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"
+                                   MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Track Grid.Row="1"
+                       x:Name="PART_Track"
+                       Minimum="0"
+                       Maximum="5">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton2}"
+                                      Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb2}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton3}"
+                                      Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="Slider3"
+                         TargetType="{x:Type Slider}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"
+                                   MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Track Grid.Row="1"
+                       x:Name="PART_Track"
+                       Minimum="0"
+                       Maximum="5">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton3}"
+                                      Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb3}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton4}"
+                                      Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+    </Grid.Resources>
+    <Slider x:Name="LowerSlider"
+		    VerticalAlignment="Center"
+		    IsSnapToTickEnabled="True"
+		    IsSelectionRangeEnabled="True"
+		    Focusable="False"
+		    TickFrequency="0.1"
+		    Thumb.DragStarted="LowerSlider_DragStarted"
+		    Thumb.DragDelta="LowerSlider_DragDelta"
+            Thumb.DragCompleted="LowerSlider_DragCompleted"
+            PreviewKeyDown="Slider_PreviewKeyDown"
+		    Value="{Binding Value, ElementName=root}"
+		    Template="{StaticResource Slider1}"
+		    Minimum="0"
+		    Margin="0,0,20,0" />
+    <Slider x:Name="MidSlider"
+		    VerticalAlignment="Center"
+		    IsSnapToTickEnabled="True"
+		    TickFrequency="0.1"
+		    IsSelectionRangeEnabled="True"
+		    Focusable="False"
+            PreviewKeyDown="Slider_PreviewKeyDown"
+		    Thumb.DragStarted="MidSlider_DragStarted"
+		    Thumb.DragCompleted="MidSlider_DragCompleted"
+		    Thumb.DragDelta="MidSlider_DragDelta"
+		    Value="{Binding Value, ElementName=root}"
+		    Template="{StaticResource Slider2}"
+		    Margin="10,0,10,0" />
+    <Slider x:Name="UpperSlider"
+		    VerticalAlignment="Center"
+		    IsSnapToTickEnabled="True"
+		    IsSelectionRangeEnabled="True"
+		    Focusable="False"
+		    TickFrequency="0.1"
+            PreviewKeyDown="Slider_PreviewKeyDown"
+		    Thumb.DragStarted="UpperSlider_DragStarted"
+		    Thumb.DragDelta="UpperSlider_DragDelta"
+		    Thumb.DragCompleted="UpperSlider_DragCompleted"
+		    Maximum="5"
+		    Value="{Binding Value, ElementName=root}"
+		    Template="{StaticResource Slider3}"
+		    Margin="20,0,0,0"/>
+</Grid>
